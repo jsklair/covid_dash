@@ -1,0 +1,63 @@
+https://coronavirus.data.gov.uk/details/developers-guide#methods-head
+API URL Structure:
+1.
+https://api.coronavirus.data.gov.uk/v1/data?
+2. FILTER
+filters=[metricName1]=[string];[metricName2]=[string];[metricName3]=[string]
+OR
+filters=[metricName]=[string]
+
+Note: The areaType metric is mandatory and must be defined in all queries.
+Please note that the values of the areaType metric are case-sensitive.
+
+‘overview’
+Overview data for the United Kingdom
+‘nation’
+Nation data (England, Northern Ireland, Scotland, and Wales)
+‘region’
+Region data
+‘nhsRegion’
+NHS Region data
+‘utla’
+Upper-tier local authority data
+‘ltla’
+Lower-tier local authority data
+
+3. STRUCTURE
+structure={[responseName]:[metricName], [responseName]:[metricName]}
+OR
+structure=[metricName, metricName]
+
+3. CSV (optional)
+&as_csv:"True"
+
+
+Attempt 1:
+https://api.coronavirus.data.gov.uk/v1/data?
+filters=areaName=England;areaType=nation&
+structure={"date":"date","name":"areaName","code":"areaCode","newCasesByPublishDate":"newCasesByPublishDate","cumCasesByPublishDate":"cumCasesByPublishDate","newDeaths28DaysByPublishDate":"newDeaths28DaysByPublishDate","cumDeaths28DaysByPublishDate":"cumDeaths28DaysByPublishDate"}
+
+Attempt 2:
+https://api.coronavirus.data.gov.uk/v1/data?
+filters=date=2021-07-23;areaName=England;areaType=nation&
+structure={"date":"date","name":"areaName","newCasesByPublishDate":"newCasesByPublishDate","cumCasesByPublishDate":"cumCasesByPublishDate"}
+
+Attempt 3:
+https://api.coronavirus.data.gov.uk/v1/data?
+filters=date>2021-07-01; date<2021-07-29;areaName=England;areaType=nation&
+structure={"date":"date","name":"areaName","newCasesByPublishDate":"newCasesByPublishDate","cumCasesByPublishDate":"cumCasesByPublishDate"}
+
+
+
+
+Attempt x:
+https://api.coronavirus.data.gov.uk/v1/data?
+
+filters=[areaType]=[ nation]
+structure={[newCasesBySpecimenDate]:[newCasesBySpecimenDate], [responseName]:[metricName]}
+
+filters=areaType=nation&
+structure={"date":"date","name":"areaName","newCasesByPublishDate":"newCasesByPublishDate"}
+
+
+
